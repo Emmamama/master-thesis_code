@@ -1,0 +1,17 @@
+function [sub,c]=main(sequence,w,f)
+sub=SubsequenceExtranction(sequence,w,f);
+c={};
+error=0;
+while error ~= inf
+    [c1,s1,error1]=CreateCluster(c,sub);
+    [c2,s2,error2]=UpdateCluster(c,sub);
+    [c3,s3,error3]=MergeCluster(c,sub);
+    if error1<error2 && error1<error3
+        c=c1;
+        sub=s1;
+    else
+    m=ffff(c1,c2,c3);
+    c=c?;
+    sub=s?;
+    p=ggg(c);
+end

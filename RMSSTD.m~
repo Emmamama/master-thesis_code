@@ -1,0 +1,33 @@
+function p=RMSSTD(data,Rs)
+for N=1:30
+    T=cluster(Rs,'maxclust',N);
+    er=0.0;
+    length=0;
+    tmp=zeros(unique(T),1);
+    for i=1:unique(T)
+        x(i).content={};
+        x(i).aver=zeros(1,size(data(1,:),2));
+        x(i).num=0;
+        for j=1:size(data,1)
+            if T(j)==i
+                x(i).content{end+1}=data(j,:);
+                x(i).aver=x(i).aver+data(j,:);
+                x(i).num=x(i).num+1;
+            end
+        end
+        x(i).aver=x(i).aver/x(i).num;
+        for j=1:x(i).num
+            tmp(i)=tmp(i)+norm(x(i).content{j}-x(i).aver,2);
+        end 
+        er=er+tmp(i);
+        length=length+x(i).num-1;
+    end
+    p[N]=power(err/length,0.5);
+end
+end
+
+    
+    
+    
+
+
